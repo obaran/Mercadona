@@ -12,12 +12,14 @@ import java.time.LocalDate;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    private Long id;
     private String label;
     private String description;
     private double price;
     private Blob image;
+    private String category;
+
 
     // Getters et Setters
     public Long getId() {
@@ -58,6 +60,12 @@ public class Product {
 
     public void setImage(Blob image) {
         this.image = image;
+    }
+    public String getCategory() {
+        return category;
+    }
+    public void setCategory(String category) {
+        this.category = category;
     }
     private LocalDate startDate;
     private LocalDate endDate;
