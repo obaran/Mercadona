@@ -6,7 +6,7 @@ import com.onur.mercadona.dto.request.PromotionRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
+//commentaire pour le test commit ssh
 @RestController
 @RequestMapping("/products")
 public class ProductController {
