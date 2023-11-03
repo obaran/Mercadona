@@ -1,7 +1,5 @@
 package com.onur.mercadona.controller;
 
-import com.onur.mercadona.services.PromotionService;
-import com.onur.mercadona.model.Promotion;
 import com.onur.mercadona.dto.request.PromotionRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +17,20 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/promotions")
-public class PromotionController {
+public class promotionController {
 
     @Autowired
     private PromotionService promotionService;
 
     @PostMapping
-    public ResponseEntity<Promotion> addPromotion(@RequestBody PromotionRequest promotionRequest) {
-        Promotion promotion = promotionService.addPromotion(promotionRequest.toPromotion());
+    public ResponseEntity<promotion> addPromotion(@RequestBody PromotionRequest promotionRequest) {
+        promotion promotion = promotionService.addPromotion(promotionRequest.toPromotion());
         return new ResponseEntity<>(promotion, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Promotion> getPromotion(@PathVariable Long id) {
-        Optional<Promotion> optionalPromotion = promotionService.getPromotionById(id);
+    public ResponseEntity<promotion> getPromotion(@PathVariable Long id) {
+        Optional<promotion> optionalPromotion = promotionService.getPromotionById(id);
         if (!optionalPromotion.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -40,8 +38,8 @@ public class PromotionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Promotion>> getAllPromotions() {
-        List<Promotion> promotions = promotionService.getAllPromotions();
+    public ResponseEntity<List<promotion>> getAllPromotions() {
+        List<promotion> promotions = promotionService.getAllPromotions();
         if (promotions.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

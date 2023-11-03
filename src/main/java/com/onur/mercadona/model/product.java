@@ -1,15 +1,12 @@
 package com.onur.mercadona.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import java.sql.Blob;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
-
 @Entity
-public class Product {
+@Table(name = "product")
+public class product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -17,7 +14,10 @@ public class Product {
     private String label;
     private String description;
     private double price;
-    private Blob image;
+
+    //    @Lob
+//    @Column(name = "image")
+    private byte[] image;
     private String category;
 
 
@@ -54,11 +54,11 @@ public class Product {
         this.price = price;
     }
 
-    public Blob getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
     public String getCategory() {

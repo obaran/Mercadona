@@ -1,6 +1,5 @@
 package com.onur.mercadona.dto.request;
 
-import com.onur.mercadona.model.Promotion;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -55,7 +54,7 @@ public class PromotionRequest {
         this.discountPercentage = discountPercentage;
     }
 
-    public Promotion toPromotion() {
-        return new Promotion(this.getName(),"", this.getDiscountPercentage()); }
+    public promotion toPromotion() {
+        return new promotion(this.getName(),"", this.getDiscountPercentage()); }
 
 }
