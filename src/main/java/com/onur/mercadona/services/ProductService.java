@@ -1,6 +1,7 @@
 package com.onur.mercadona.services;
 
-import com.onur.mercadona.model.Product;
+
+import com.onur.mercadona.model.product;
 
 import org.springframework.stereotype.Service;
 
@@ -9,12 +10,13 @@ import org.springframework.stereotype.Service;
 public class ProductService {
 
 
-    public Product createProduct(Product product) {
+    public product createProduct(product product) {
 
         return null;
 //        return productRepository.save(product);
     }
 
 }
+
 
 
