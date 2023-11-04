@@ -1,43 +1,43 @@
 package com.onur.mercadona.controller;
 
 
-import com.onur.mercadona.model.product;
+import com.onur.mercadona.model.Product;
+import com.onur.mercadona.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.onur.mercadona.services.productService;
+import com.onur.mercadona.services.ProductService;
 
-import java.util.Optional;
+import java.util.List;
 
 
 @RestController
 @RequestMapping("/products")
-public class productController {
+public class ProductController {
 
     @Autowired
-    private com.onur.mercadona.repository.productRepository productRepository;
+    private ProductRepository productRepository;
 
     @PostMapping
-    public product createProduct(@RequestBody product product) {
+    public Product createProduct(@RequestBody Product product) {
 
 //        var p = new product();
 //        p.setLabel("abc");
 
 //        var j = this.productRepository.save(p);
-     return productService.createProduct(product);
+     return ProductService.createProduct(product);
 //        return j;
     }
-    @GetMapping("/{id}")
-    public Optional<product> getProduct(@PathVariable Long id) {
-        return productService.getProductBy(id);
+    @GetMapping
+    public List<Product> getAllProducts() {
+        return ProductService.findAllProducts();
     }
-
     @PutMapping("/{id}")
-    public product updateProduct(@PathVariable Long id, @RequestBody product updatedProduct) {
-       return productService.updateProduct(id, updatedProduct);
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
+       return ProductService.updateProduct(id, updatedProduct);
     }
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id) {
-        productService.deleteProduct(id);
+        ProductService.deleteProduct(id);
     }
 
 //    @PostMapping("/{id}/add-promotion")

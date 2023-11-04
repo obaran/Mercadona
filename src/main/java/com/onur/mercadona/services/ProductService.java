@@ -1,8 +1,9 @@
 package com.onur.mercadona.services;
 
 
-import com.onur.mercadona.model.product;
+import com.onur.mercadona.model.Product;
 
+import com.onur.mercadona.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,26 +12,31 @@ import java.util.Optional;
 
 
 @Service
-public class productService {
+public class ProductService {
 
     @Autowired
-    private static com.onur.mercadona.repository.productRepository productRepository;
-    public static product createProduct(product product) {
+    private static ProductRepository productRepository;
+    public static Product createProduct(Product product) {
 
         return productRepository.save(product);
     }
 
-    public static Optional<product> getProductBy(Long id) {
+    public static Optional<Product> getProductBy(Long id) {
 
         return productRepository.findById(id);
     }
 
-    public static product updateProduct(Long id, product updatedProduct) {
+    public static Product updateProduct(Long id, Product updatedProduct) {
 
         return updatedProduct;
     }
 
-//    public List<product> getAllProducts() {
+    public static List<Product> findAllProducts() {
+        return productRepository.findAll();
+    }
+
+
+    //    public List<product> getAllProducts() {
 //        return productRepository.findAll();
 //    }
 //    public product updateproduct(product product) {

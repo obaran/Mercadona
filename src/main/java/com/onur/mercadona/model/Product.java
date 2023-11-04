@@ -6,7 +6,8 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "product")
-public class product {
+public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -15,10 +16,11 @@ public class product {
     private String description;
     private double price;
 
-    //    @Lob
-//    @Column(name = "image")
+
+    @Column(name = "image")
     private byte[] image;
-    private String category;
+    @ManyToOne
+    private Category category;
 
 
     // Getters et Setters
@@ -61,37 +63,13 @@ public class product {
     public void setImage(byte[] image) {
         this.image = image;
     }
-    public String getCategory() {
+
+    public Category getCategory() {
         return category;
     }
-    public void setCategory(String category) {
+
+    public void setCategory(Category category) {
         this.category = category;
     }
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private double discountPercentage;
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public double getDiscountPercentage() {
-        return discountPercentage;
-    }
-
-    public void setDiscountPercentage(double discountPercentage) {
-        this.discountPercentage = discountPercentage;
-    }
 }
