@@ -1,7 +1,6 @@
 package com.onur.mercadona.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -21,6 +20,14 @@ public class Product {
     private byte[] image;
     @ManyToOne
     private Category category;
+
+
+    @Column(name = "promotion_start_date")
+    private LocalDate promotionStartDate;
+    @Column(name = "promotion_end_date")
+    private LocalDate promotionEndDate;
+    @Column(name = "promotion-percentage")
+    private Double promotionPercentage;
 
 
     // Getters et Setters
@@ -70,6 +77,32 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+//     Promotion G and S
+
+    public LocalDate getPromotionStartDate() {
+        return promotionStartDate;
+    }
+
+    public void setPromotionStartDate(LocalDate promotionStartDate) {
+        this.promotionStartDate = promotionStartDate;
+    }
+
+    public LocalDate getPromotionEndDate() {
+        return promotionEndDate;
+    }
+
+    public void setPromotionEndDate(LocalDate promotionEndDate) {
+        this.promotionEndDate = promotionEndDate;
+    }
+
+    public Double getPromotionPercentage() {
+        return promotionPercentage;
+    }
+
+    public void setPromotionPercentage(Double promotionPercentage) {
+        this.promotionPercentage = promotionPercentage;
     }
 
 }

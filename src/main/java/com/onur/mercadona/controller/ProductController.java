@@ -1,6 +1,7 @@
 package com.onur.mercadona.controller;
 
 
+import com.onur.mercadona.dto.PromotionRequest;
 import com.onur.mercadona.model.Product;
 import com.onur.mercadona.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +41,11 @@ public class ProductController {
         ProductService.deleteProduct(id);
     }
 
-//    @PostMapping("/{id}/add-promotion")
-//    public Product addProductPromotion(@PathVariable Long id, @RequestBody PromotionRequest promotionRequest) {
-////        return productService.addProductPromotion(id, promotionRequest);
-//        return new Product();
-//    }
+    @PostMapping("/{id}/add-promotion")
+    public Product addProductPromotion(@PathVariable Long id, @RequestBody PromotionRequest promotionRequest) {
+       return ProductService.addProductPromotion(id, promotionRequest);
+
+    }
 
 }
 
