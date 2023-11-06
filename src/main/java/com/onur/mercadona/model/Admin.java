@@ -16,11 +16,11 @@ public class Admin {
 
     @Column(nullable = false)
     private String password;
-// Constructeru par defaut nécessaire pour JPA
+    // Constructeru par defaut nécessaire pour JPA
     public Admin(){
 
     }
-// Constructeur avec paramètres
+    // Constructeur avec paramètres
     public Admin(String username, String password) {
         this.username = username;
         this.password = password;

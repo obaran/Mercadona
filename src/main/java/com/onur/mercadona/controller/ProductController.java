@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.onur.mercadona.services.ProductService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,35 +17,34 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
 
-//        var p = new product();
-//        p.setLabel("abc");
-
-//        var j = this.productRepository.save(p);
-     return ProductService.createProduct(product);
-//        return j;
+        return this.productService.createProduct(product);
     }
     @GetMapping
     public List<Product> getAllProducts() {
-        return ProductService.findAllProducts();
+        var products = this.productService.findAllProducts();
+
+        if (products == null){
+            return new ArrayList<>();
+        }
+        return products;
     }
     @PutMapping("/{id}")
     public Product updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
-       return ProductService.updateProduct(id, updatedProduct);
+        return this.productService.updateProduct(id, updatedProduct);
     }
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id) {
-        ProductService.deleteProduct(id);
+        this.productService.deleteProduct(id);
     }
 
     @PostMapping("/{id}/add-promotion")
     public Product addProductPromotion(@PathVariable Long id, @RequestBody PromotionRequest promotionRequest) {
-       return ProductService.addProductPromotion(id, promotionRequest);
-
+        return this.productService.addProductPromotion(id, promotionRequest);
     }
 
 }

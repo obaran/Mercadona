@@ -10,25 +10,26 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.time.LocalDate;
 
 
 @Service
 public class ProductService {
 
     @Autowired
-    private static ProductRepository productRepository;
-    public static Product createProduct(Product product) {
+    private ProductRepository productRepository;
 
-        return productRepository.save(product);
+
+    public  Product createProduct(Product product) {
+
+        return this.productRepository.save(product);
     }
 
-    public static Optional<Product> getProductBy(Long id) {
+    public  Optional<Product> getProductBy(Long id) {
 
-        return productRepository.findById(id);
+        return this.productRepository.findById(id);
     }
 
-    public static Product updateProduct(Long id, Product updatedProduct) {
+    public  Product updateProduct(Long id, Product updatedProduct) {
 
         return updatedProduct;
     }
@@ -40,15 +41,14 @@ public class ProductService {
 //        return null;
 //    }
 
-    public static List<Product> findAllProducts() {
-        return productRepository.findAll();
+    public List<Product> findAllProducts() { return this.productRepository.findAll();
     }
 
 
     //    public List<product> getAllProducts() {
 //        return productRepository.findAll();
 
-    public static void deleteProduct(Long id) {
+    public  void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
 
@@ -57,7 +57,7 @@ public class ProductService {
 //    }
 
 
-    public static Product addProductPromotion(Long id, PromotionRequest promotionRequest) {
+    public  Product addProductPromotion(Long id, PromotionRequest promotionRequest) {
         // Retrieve the existing product
         Optional<Product> productOptional = productRepository.findById(id);
         if (!productOptional.isPresent()) {
@@ -68,6 +68,6 @@ public class ProductService {
         product.setPromotionStartDate(promotionRequest.getStartDate());
         product.setPromotionEndDate(promotionRequest.getEndDate());
         product.setPromotionPercentage(promotionRequest.getPromotionPercentage());
-            return productRepository.save(product);
+        return productRepository.save(product);
     }
 }
