@@ -13,16 +13,24 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.security.config.Elements.HTTP;
+
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableMethodSecurity
+
+
 public class WebSecurityConfig {
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Autowired
     private JWTAuthenticationFilter jwtAuthenticationFilter;
@@ -33,17 +41,22 @@ public class WebSecurityConfig {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    private static final String[] ALLOWED_LIST_URL = {"/auth/login"};
+    private final String[] ALLOWED_LIST_URL = {"/auth/login", "/products"};
 
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
+
                                 req.requestMatchers(ALLOWED_LIST_URL)
+
                                         .permitAll()
-                                        .requestMatchers(HttpMethod.GET, "/products").permitAll()
+                                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//                                        .requestMatchers(HttpMethod.GET, "/products")
+//                                        .permitAll()
 //                                .requestMatchers("/api/v1/management/**").hasAnyRole(ADMIN.name(), MANAGER.name())
 //                                .requestMatchers(GET, "/api/v1/management/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
 //                                .requestMatchers(POST, "/api/v1/management/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
@@ -59,5 +72,8 @@ public class WebSecurityConfig {
         ;
 
         return http.build();
+    }
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

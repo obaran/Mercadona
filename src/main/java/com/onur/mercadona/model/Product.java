@@ -15,7 +15,6 @@ public class Product {
     private String description;
     private double price;
 
-
     @Column(name = "image")
     private byte[] image;
     @ManyToOne
