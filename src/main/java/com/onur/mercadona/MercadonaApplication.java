@@ -8,6 +8,5 @@ public class MercadonaApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MercadonaApplication.class, args);}
-
 }
 
