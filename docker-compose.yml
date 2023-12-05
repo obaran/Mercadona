@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  app:
+    build: .
+    ports:
+      - "3331:3331"
+    environment:
+      DATASOURCE_URL: ${DATASOURCE_URL}
+      DATASOURCE_USERNAME: ${DATASOURCE_USERNAME}
+      DATASOURCE_PASSWORD: ${DATASOURCE_PASSWORD}
+      APP_JWTSECRET: ${APP_JWTSECRET}
+    depends_on:
+      - db
