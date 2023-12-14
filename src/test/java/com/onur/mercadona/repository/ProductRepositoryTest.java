@@ -1,4 +1,4 @@
-package com.onur.mercadona;
+package com.onur.mercadona.repository;
 
 import com.onur.mercadona.model.Product;
 import com.onur.mercadona.repository.ProductRepository;

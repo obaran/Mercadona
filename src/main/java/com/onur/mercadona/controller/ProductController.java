@@ -3,7 +3,6 @@ package com.onur.mercadona.controller;
 
 import com.onur.mercadona.dto.PromotionRequest;
 import com.onur.mercadona.model.Product;
-import com.onur.mercadona.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.onur.mercadona.services.ProductService;
@@ -34,8 +33,8 @@ public class ProductController {
         return products;
     }
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
-        return this.productService.updateProduct(id, updatedProduct);
+    public Product updateProduct(@RequestBody Product updatedProduct) {
+        return this.productService.updateProduct(updatedProduct);
     }
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id) {

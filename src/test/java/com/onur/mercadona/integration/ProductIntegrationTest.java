@@ -1,4 +1,4 @@
-package com.onur.mercadona;
+package com.onur.mercadona.integration;
 
 import com.onur.mercadona.model.Product;
 import com.onur.mercadona.repository.ProductRepository;
@@ -31,12 +31,10 @@ public class ProductIntegrationTest {
         Product product1 = new Product();
         product1.setLabel("Product 1");
         product1.setPrice(10.0);
-        // Configurez les autres propriétés de product1 si nécessaire
 
         Product product2 = new Product();
         product2.setLabel("Product 2");
         product2.setPrice(15.5);
-        // Configurez les autres propriétés de product2 si nécessaire
 
         productRepository.save(product1);
         productRepository.save(product2);
@@ -51,4 +49,3 @@ public class ProductIntegrationTest {
                 .andExpect(jsonPath("$[1].label").value("Product 2"));
     }
 }
-

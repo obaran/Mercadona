@@ -1,4 +1,4 @@
-package com.onur.mercadona;
+package com.onur.mercadona.controller;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -69,7 +69,7 @@ public class ProductControllerTest {
     public void testUpdateProduct() throws Exception {
         Long productId = 1L;
         Product updatedProduct = new Product(); // Set properties of updated product
-        when(productService.updateProduct(eq(productId), any(Product.class))).thenReturn(updatedProduct);
+        when(productService.updateProduct(any(Product.class))).thenReturn(updatedProduct);
 
         mockMvc.perform(put("/products/" + productId)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -77,7 +77,7 @@ public class ProductControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(updatedProduct)));
 
-        verify(productService, times(1)).updateProduct(eq(productId), any(Product.class));
+        verify(productService, times(1)).updateProduct(any(Product.class));
     }
 
     @Test

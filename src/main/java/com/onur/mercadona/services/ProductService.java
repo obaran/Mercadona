@@ -19,48 +19,30 @@ public class ProductService {
     private ProductRepository productRepository;
 
 
-    public  Product createProduct(Product product) {
+    public Product createProduct(Product product) {
 
         return this.productRepository.save(product);
     }
 
-    public  Optional<Product> getProductBy(Long id) {
-
-        return this.productRepository.findById(id);
-    }
-
-    public  Product updateProduct(Long id, Product updatedProduct) {
+    public Product updateProduct(Product updatedProduct) {
 
         return updatedProduct;
     }
-    //    }
-//    public product updateProduct(product product) {
-//        if (productRepository.existsById(product.getId())) {
-//            return productRepository.save(product);
-//        }
-//        return null;
-//    }
 
-    public List<Product> findAllProducts() { return this.productRepository.findAll();
+    public List<Product> findAllProducts() {
+        return this.productRepository.findAll();
     }
 
 
-    //    public List<product> getAllProducts() {
-//        return productRepository.findAll();
-
-    public  void deleteProduct(Long id) {
+    public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
 
-//    public static Product addProductPromotion(Long id, PromotionRequest promotionRequest) {
-//        return new Product();
-//    }
 
-
-    public  Product addProductPromotion(Long id, PromotionRequest promotionRequest) {
+    public Product addProductPromotion(Long id, PromotionRequest promotionRequest) {
         // Retrieve the existing product
         Optional<Product> productOptional = productRepository.findById(id);
-        if (!productOptional.isPresent()) {
+        if (productOptional.isEmpty()) {
             throw new RuntimeException("Product with id " + id + " not found");
         }
         Product product = productOptional.get();
