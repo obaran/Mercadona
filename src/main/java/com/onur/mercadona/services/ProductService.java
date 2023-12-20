@@ -40,7 +40,6 @@ public class ProductService {
 
 
     public Product addProductPromotion(Long id, PromotionRequest promotionRequest) {
-        // Retrieve the existing product
         Optional<Product> productOptional = productRepository.findById(id);
         if (productOptional.isEmpty()) {
             throw new RuntimeException("Product with id " + id + " not found");
